@@ -32,9 +32,9 @@ public class ConsumerWorker implements Runnable {
 
     @Override
     public void run() {
-        Message message = new Message();
-        message.setType(record.topic().equals(TOPIC_BLOCK) ? Type.BLOCK : Type.TRANSACTION);
-        message.setMessage(record.value());
+        Message message = new Message(
+            record.value(),
+            record.topic().equals(TOPIC_BLOCK) ? Type.BLOCK : Type.TRANSACTION);
 
         kafka.deliver(message);
     }

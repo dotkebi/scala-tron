@@ -220,12 +220,14 @@ public class BlockUtils {
         return number;
     }
 
-    // Whether the hash of the judge block is equal to the hash of the parent
-    // block
-    public static boolean isParentOf(TronBlock.Block block1, TronBlock.Block
-            block2) {
+    /**
+     * Whether the hash of the judge block is equal to the hash of the parent
+     * block
+     */
+    public static boolean isParentOf(
+            TronBlock.Block block1,
+            TronBlock.Block block2) {
 
-        return (block1.getBlockHeader().getParentHash() == block2.getBlockHeader
-                ().getHash());
+        return (block1.getBlockHeader().getParentHash() == block2.getBlockHeader().getHash());
     }
 }

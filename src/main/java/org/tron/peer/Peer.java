@@ -118,7 +118,6 @@ public class Peer {
 
     private void initNet() {
         source = new ReceiveSource();
-
         net = new Kafka(source, Arrays.asList(TOPIC_BLOCK, TOPIC_TRANSACTION));
     }
 

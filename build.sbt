@@ -37,6 +37,10 @@ libraryDependencies ++= Seq(
   "net.jcip" % "jcip-annotations" % "1.0",
   "org.fusesource.jansi" % "jansi" % "1.16",
 
-  "org.apache.kafka" % "kafka_2.12" % "0.11.0.2"
+  "org.apache.kafka" % "kafka_2.12" % "0.11.0.2",
+
+  "com.typesafe.akka" %% "akka-actor" % "2.5.8",
+  "com.typesafe.akka" %% "akka-stream" % "2.5.8"
+
 
 )
