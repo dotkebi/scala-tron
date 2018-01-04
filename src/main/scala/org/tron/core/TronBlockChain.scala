@@ -12,15 +12,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tron.facade;
+package org.tron.core
 
 
-import org.tron.protos.core.TronBlock;
+import org.tron.dbStore.BlockStoreInput
+import org.tron.protos.core.TronBlock
+import java.math.BigInteger
 
-public interface TronBlockChain {
 
-    /**
-     * @return - last added block from blockchain
-     */
-    TronBlock.Block getBestBlock();
+trait TronBlockChain {
+
+  def getBlockStoreInter: BlockStoreInput
+
+  /**
+    * @return - last added block from blockchain
+    */
+  def getBestBlock: TronBlock.Block
+
+  def getTotalDifficulty: BigInteger
 }

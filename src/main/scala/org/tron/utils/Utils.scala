@@ -12,14 +12,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tron.utils;
+package org.tron.utils
 
-import java.security.SecureRandom;
+import java.security.SecureRandom
 
-public class Utils {
-    private static SecureRandom random = new SecureRandom();
-
-    public static SecureRandom getRandom() {
-        return random;
-    }
+object Utils {
+  private val random = new SecureRandom
+  def getRandom: SecureRandom = random
 }

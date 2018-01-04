@@ -55,13 +55,13 @@ public class Cli {
                     new PrintBlockchainCommand().execute(peer, cmdParameters);
                     break;
                 case "consensus":
-                    new ConsensusCommand().server();
+                    new ConcensusCommand().server();
                     break;
                 case "getmessage":
-                    new ConsensusCommand().getClient(cmdParameters);
+                    new ConcensusCommand().getClient(cmdParameters);
                     break;
                 case "putmessage":
-                    new ConsensusCommand().putClient(cmdParameters);
+                    new ConcensusCommand().putClient(cmdParameters);
                     break;
                 case "exit":
                 case "quit":

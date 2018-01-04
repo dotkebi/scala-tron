@@ -35,8 +35,7 @@ import java.math.BigInteger;
 import static org.tron.core.Constant.LAST_HASH;
 
 @Component
-public class TronBlockChainImpl implements TronBlockChain, org.tron.facade
-        .TronBlockChain {
+public class TronBlockChainImpl implements TronBlockChain, org.tron.facade.TronBlockChain {
 
     private static final Logger logger = LoggerFactory.getLogger("Blockchain");
 

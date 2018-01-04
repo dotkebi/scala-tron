@@ -14,8 +14,6 @@
  */
 package org.tron.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.tron.peer.Peer;
 
 import static org.fusesource.jansi.Ansi.ansi;
@@ -50,7 +48,7 @@ public class HelpCommand extends Command {
             case "consensus":
             case "getmessage":
             case "putmessage":
-                new ConsensusCommand().usage();
+                new ConcensusCommand().usage();
                 break;
             case "exit":
             case "quit":

@@ -12,22 +12,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.tron.core
 
-package org.tron.storage;
+import java.util
 
+import org.tron.protos.core.TronTransaction.Transaction
 
-public interface SourceInter<K, V> {
+trait PendingState {
+  def addPendingTransactions(transactions: util.List[Transaction]): util.List[Transaction]
 
+  def addPendingTransaction(tx: Transaction): Unit
 
-    void putData(K key, V val);
-
-
-    V getData(K key);
-
-
-    void deleteData(K key);
-
-
-    boolean flush();
-
+  def getPendingTransactions: util.List[Transaction]
 }

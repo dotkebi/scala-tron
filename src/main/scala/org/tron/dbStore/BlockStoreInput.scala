@@ -12,18 +12,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tron.dbStore;
-import org.tron.protos.core.TronBlock;
+package org.tron.dbStore
 
-public interface BlockStoreInput {
+import org.tron.protos.core.TronBlock
 
-    TronBlock.Block getBestBlock();
 
-    long getMaxNumber();
+trait BlockStoreInput {
+  def getBestBlock: TronBlock.Block
 
-    TronBlock.Block getChainBlockByNumber(long blockNumber);
+  def getMaxNumber: Long
 
-    boolean isBlockExist(byte[] hash);
-    TronBlock.Block getBlockByHash(byte[] hash);
+  def getChainBlockByNumber(blockNumber: Long): TronBlock.Block
 
+  def isBlockExist(hash: Array[Byte]): Boolean
+
+  def getBlockByHash(hash: Array[Byte]): TronBlock.Block
 }

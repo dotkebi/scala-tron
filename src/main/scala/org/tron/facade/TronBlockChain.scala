@@ -12,20 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package org.tron.core;
-
-import org.tron.protos.core.TronTransaction.Transaction;
-
-import java.util.List;
+package org.tron.facade
 
 
-public interface PendingState {
+import org.tron.protos.core.TronBlock
 
-    List<Transaction> addPendingTransactions(List<Transaction> transactions);
 
-    void addPendingTransaction(Transaction tx);
-
-    List<Transaction> getPendingTransactions();
-
+trait TronBlockChain {
+  /**
+    * @return - last added block from blockchain
+    */
+  def getBestBlock: TronBlock.Block
 }

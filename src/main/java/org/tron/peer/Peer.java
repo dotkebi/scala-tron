@@ -106,7 +106,8 @@ public class Peer {
     }
 
     private void initBlockchain() {
-       blockchain = new Blockchain(ByteArray.toHexString(wallet.getAddress()));
+
+        blockchain = new Blockchain(ByteArray.toHexString(wallet.getAddress()));
     }
 
     private void initUTXOSet() {

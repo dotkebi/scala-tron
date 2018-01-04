@@ -12,23 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tron.core;
+package org.tron.command
 
+import org.tron.peer.Peer
 
-import org.tron.dbStore.BlockStoreInput;
-import org.tron.protos.core.TronBlock;
+abstract class Command {
+  def execute(peer: Peer, parameter: Array[String]): Unit
 
-import java.math.BigInteger;
+  def usage(): Unit
 
-public interface TronBlockChain {
+  def check(parameter: Array[String]): Boolean
 
-    BlockStoreInput getBlockStoreInter();
-
-    /**
-     * @return - last added block from blockchain
-     */
-    TronBlock.Block getBestBlock();
-
-
-    BigInteger getTotalDifficulty();
 }

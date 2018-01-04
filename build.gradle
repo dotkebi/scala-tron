@@ -43,8 +43,7 @@ dependencies {
 
     compile "org.iq80.leveldb:leveldb:0.7"
 
-    compile group: 'org.fusesource.leveldbjni', name: 'leveldbjni-all',
-            version: '1.8'
+    compile group: 'org.fusesource.leveldbjni', name: 'leveldbjni-all', version: '1.8'
 
     compile "org.apache.commons:commons-collections4:4.0"
 

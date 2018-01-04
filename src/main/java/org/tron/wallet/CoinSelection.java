@@ -1,6 +1,5 @@
 package org.tron.wallet;
 
-
 import org.tron.core.Coin;
 import org.tron.protos.core.TronTXOutput;
 

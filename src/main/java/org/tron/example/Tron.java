@@ -21,6 +21,7 @@ import org.tron.peer.Peer;
 import org.tron.peer.PeerType;
 
 public class Tron {
+
     @Parameter(names = {"--type", "-t"}, validateWith = PeerType.class)
     private String type = "normal";
 
