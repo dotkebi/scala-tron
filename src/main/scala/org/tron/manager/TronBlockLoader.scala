@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.tron.config.SystemProperties
 import org.tron.core.{TransactionUtils, TronBlockChainImpl}
 import org.tron.protos.core.TronBlock
+import scala.collection.JavaConverters._
 
 
 class TronBlockLoader(blockchain: TronBlockChainImpl) {
@@ -34,7 +35,7 @@ class TronBlockLoader(blockchain: TronBlockChainImpl) {
       // Verify sender
       .map { block =>
         if (isBlockNewer(block)) {
-          for (tx <- block.getTransactionsList) {
+          for (tx <- block.getTransactionsList.asScala) {
             TransactionUtils.getSender(tx)
           }
         }

@@ -38,8 +38,8 @@ public class Tron {
 
     public void run() {
         peer = Peer.getInstance(type);
-        Cli cli = new Cli();
-        cli.run(peer);
+        Cli cli = new Cli(peer);
+        cli.run();
     }
 
     public static Peer getPeer() {
