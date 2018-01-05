@@ -28,15 +28,8 @@ TRON is a product of Web 4.0 and the decentralized internet of next generation.
 ```shell
 > git clone https://github.com/tronprotocol/java-tron.git
 > cd java-tron
-> gradle build
+> sbt compile
 ```
-
-**Import project to IDEA**
-
-- [File] -> [New] -> [Project from Existing Sources...]
-- Select java-tron/build.gradle
-- Dialog [Import Project from Gradle], confirm [Use auto-import] and [Use gradle wrapper task configuration] have been
- selected，then select Gradle JVM（JDK 1.8）and click [OK]
 
 # Testing
 
