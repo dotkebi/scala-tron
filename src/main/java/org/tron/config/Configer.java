@@ -50,9 +50,10 @@ public class Configer {
                 String nodeIdPrivateKey = ByteArray.toHexString(privKeyBytes);
 
                 props.setProperty("nodeIdPrivateKey", nodeIdPrivateKey);
-                props.setProperty("nodeId", Hex.toHexString(key.getNodeId
-                        ()));
+
+                props.setProperty("nodeId", Hex.toHexString(key.getNodeId()));
                 file.getParentFile().mkdirs();
+
                 try (Writer w = new FileWriter(file)) {
                     props.store(w, "Generated NodeID.");
                 }

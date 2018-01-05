@@ -39,8 +39,11 @@ libraryDependencies ++= Seq(
 
   "org.apache.kafka" % "kafka_2.12" % "0.11.0.2",
 
+  // Akka
   "com.typesafe.akka" %% "akka-actor" % "2.5.8",
-  "com.typesafe.akka" %% "akka-stream" % "2.5.8"
+  "com.typesafe.akka" %% "akka-stream" % "2.5.8",
 
+  // Alpakka
+  "com.lightbend.akka" %% "akka-stream-alpakka-file" % "0.15.1"
 
 )
