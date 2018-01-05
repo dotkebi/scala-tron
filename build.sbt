@@ -44,6 +44,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream" % "2.5.8",
 
   // Alpakka
-  "com.lightbend.akka" %% "akka-stream-alpakka-file" % "0.15.1"
+  "com.lightbend.akka" %% "akka-stream-alpakka-file" % "0.15.1",
+
+  "com.google.inject" % "guice" % "4.1.0"
 
 )

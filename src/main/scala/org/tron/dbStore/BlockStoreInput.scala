@@ -16,7 +16,6 @@ package org.tron.dbStore
 
 import org.tron.protos.core.TronBlock
 
-
 trait BlockStoreInput {
   def getBestBlock: TronBlock.Block
 

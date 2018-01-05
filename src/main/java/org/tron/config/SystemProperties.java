@@ -21,6 +21,7 @@ public class SystemProperties {
     private final static String DEFAULT_BLOCKS_LOADER = "";
 
     private @interface ValidateMe {
+
     }
 
     private static SystemProperties CONFIG;
@@ -35,8 +36,7 @@ public class SystemProperties {
     }
 
     public String blocksLoader() {
-        return config.hasPath("blocks.loader") ?
-                config.getString("blocks.loader") : DEFAULT_BLOCKS_LOADER;
+        return config.hasPath("blocks.loader") ? config.getString("blocks.loader") : DEFAULT_BLOCKS_LOADER;
     }
 
     public static SystemProperties getDefault() {
