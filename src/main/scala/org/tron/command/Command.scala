@@ -22,5 +22,4 @@ abstract class Command {
   def usage(): Unit
 
   def check(parameter: Array[String]): Boolean
-
 }

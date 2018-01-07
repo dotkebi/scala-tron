@@ -106,7 +106,7 @@ public class BlockchainTest {
     public void testFindUTXO() {
         Wallet wallet = new Wallet();
         wallet.init();
-        UTXOSet utxoSet = new UTXOSet();
+        UTXOSet utxoSet = new UTXOSet(new LevelDbDataSourceImpl(Constant.TRANSACTION_DB_NAME()), blockchain);
         Transaction transaction = TransactionUtils.newTransaction(wallet,
                 "fd0f3c8ab4877f0fd96cd156b0ad42ea7aa82c31", 10, utxoSet);
         List<Transaction> transactions = new ArrayList<>();

@@ -37,7 +37,7 @@ libraryDependencies ++= Seq(
   "net.jcip" % "jcip-annotations" % "1.0",
   "org.fusesource.jansi" % "jansi" % "1.16",
 
-  "org.apache.kafka" % "kafka_2.12" % "0.11.0.2",
+  "org.apache.kafka" %% "kafka" % "0.11.0.2",
 
   // Akka
   "com.typesafe.akka" %% "akka-actor" % "2.5.8",
@@ -46,6 +46,14 @@ libraryDependencies ++= Seq(
   // Alpakka
   "com.lightbend.akka" %% "akka-stream-alpakka-file" % "0.15.1",
 
-  "com.google.inject" % "guice" % "4.1.0"
+  "com.google.inject" % "guice" % "4.1.0",
 
+  "org.typelevel" %% "cats-core" % "1.0.1",
+
+  "org.typelevel" %% "cats-effect" % "0.5",
+
+  "com.typesafe.akka" %% "akka-stream-kafka" % "0.18"
 )
+
+
+scalacOptions += "-Ypartial-unification"

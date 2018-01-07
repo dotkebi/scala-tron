@@ -27,15 +27,12 @@
  */
 package org.tron.command
 
-import org.slf4j.Logger
+import org.fusesource.jansi.Ansi.ansi
 import org.slf4j.LoggerFactory
 import org.tron.core.TransactionUtils
-import org.tron.overlay.message.Message
-import org.tron.overlay.message.Type
+import org.tron.overlay.message.{Message, Type}
 import org.tron.peer.Peer
-import org.tron.protos.core.TronTransaction
 import org.tron.utils.ByteArray
-import org.fusesource.jansi.Ansi.ansi
 
 import scala.util.{Failure, Success, Try}
 
@@ -49,7 +46,7 @@ class SendCommand() extends Command {
     val transaction = TransactionUtils.newTransaction(peer.getWallet, to, amount, peer.getUTXOSet)
     if (transaction != null) {
       val message = Message(ByteArray.toHexString(transaction.toByteArray), Type.TRANSACTION)
-      peer.getNet.broadcast(message)
+//      peer.getNet.broadcast(message)
     }
   }
 

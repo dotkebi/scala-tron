@@ -197,7 +197,7 @@ public class BlockUtils {
      * @return long number
      */
     public static long getIncreaseNumber(Blockchain blockchain) {
-        byte[] lastHash = blockchain.getBlockDB().getData(LAST_HASH);
+        byte[] lastHash = blockchain.getBlockDB().getData(LAST_HASH());
         if (lastHash == null) {
             return 0;
         }

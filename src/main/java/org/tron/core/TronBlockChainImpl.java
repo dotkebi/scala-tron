@@ -65,7 +65,7 @@ public class TronBlockChainImpl implements TronBlockChain, org.tron.facade.TronB
     public synchronized TronBlock.Block getBestBlock() {
         TronBlock.Block bestBlock = null;
         LevelDbDataSourceImpl levelDbDataSource = initBD();
-        byte[] lastHash = levelDbDataSource.getData(LAST_HASH);
+        byte[] lastHash = levelDbDataSource.getData(LAST_HASH());
         byte[] value = levelDbDataSource.getData(lastHash);
         try {
             bestBlock = TronBlock.Block.parseFrom(value)
@@ -89,7 +89,7 @@ public class TronBlockChainImpl implements TronBlockChain, org.tron.facade.TronB
             levelDbDataSource.putData(block.getBlockHeader().getHash()
                     .toByteArray(), blockByte);
 
-            byte[] key = LAST_HASH;
+            byte[] key = LAST_HASH();
 
             levelDbDataSource.putData(key, block.getBlockHeader().getHash()
                     .toByteArray());  // Storage lastHash

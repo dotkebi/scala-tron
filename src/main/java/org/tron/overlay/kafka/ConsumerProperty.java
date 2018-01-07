@@ -25,7 +25,7 @@ public class ConsumerProperty {
     private final static String DEFAULT_GROUP_ID = Configer.getGNPK();
     private final static String DEFAULT_ENABLE_AUTO_COMMIT = "true";
     private final static String DEFAULT_AUTO_COMMIT_INTERVAL_MS = "1000";
-    private final static String DEFAULT_SESSION_TIMEOUT_MS = "30000";
+        private final static String DEFAULT_SESSION_TIMEOUT_MS = "30000";
     private final static String DEFAULT_KEY_DESERIALIZER = "org.apache.kafka.common.serialization.StringDeserializer";
     private final static String DEFAULT_VALUE_DESERIALIZER = "org.apache.kafka.common.serialization.StringDeserializer";
 
@@ -59,9 +59,9 @@ public class ConsumerProperty {
     }
 
     public static ConsumerProperty getDefault() {
-        String bootstrapServers = Configer.getConf().getString(KAFKA_HOST) + Configer.getConf().getString(KAFKA_PORT);
+        String bootstrapServers = Configer.getConf().getString(KAFKA_HOST()) + Configer.getConf().getString(KAFKA_PORT());
 
-        if (EMPTY_STRING.equals(bootstrapServers)) {
+        if (EMPTY_STRING().equals(bootstrapServers)) {
             bootstrapServers = DEFAULT_BOOTSTRAP_SERVERS;
         }
 

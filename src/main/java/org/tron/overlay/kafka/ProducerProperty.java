@@ -56,9 +56,9 @@ public class ProducerProperty {
     }
 
     public static ProducerProperty getDefault() {
-        String bootstrapServers = Configer.getConf().getString(KAFKA_HOST) + Configer.getConf().getString(KAFKA_PORT);
+        String bootstrapServers = Configer.getConf().getString(KAFKA_HOST()) + Configer.getConf().getString(KAFKA_PORT());
 
-        if (EMPTY_STRING.equals(bootstrapServers)) {
+        if (EMPTY_STRING().equals(bootstrapServers)) {
             bootstrapServers = DEFAULT_BOOTSTRAP_SERVERS;
         }
 

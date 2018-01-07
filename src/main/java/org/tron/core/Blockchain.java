@@ -44,7 +44,6 @@ import static org.tron.storage.leveldb.LevelDbDataSourceImpl.databaseName;
 
 public class Blockchain {
 
-
     public static final String genesisCoinbaseData = "0x00";
 
 
@@ -64,15 +63,15 @@ public class Blockchain {
      */
     public Blockchain(String address) {
         if (dbExists()) {
-            blockDB = new LevelDbDataSourceImpl(BLOCK_DB_NAME);
+            blockDB = new LevelDbDataSourceImpl(BLOCK_DB_NAME());
             blockDB.initDB();
 
-            this.lastHash = blockDB.getData(LAST_HASH);
+            this.lastHash = blockDB.getData(LAST_HASH());
             this.currentHash = this.lastHash;
 
             logger.info("load blockchain");
         } else {
-            blockDB = new LevelDbDataSourceImpl(BLOCK_DB_NAME);
+            blockDB = new LevelDbDataSourceImpl(BLOCK_DB_NAME());
             blockDB.initDB();
 
             Transaction coinbase = TransactionUtils.newCoinbaseTransaction
@@ -88,7 +87,7 @@ public class Blockchain {
                     .getHash()
                     .toByteArray();
 
-            blockDB.putData(LAST_HASH, lastHash);
+            blockDB.putData(LAST_HASH(), lastHash);
 
             logger.info("new blockchain");
         }
@@ -188,7 +187,7 @@ public class Blockchain {
      * @return boolean
      */
     public static boolean dbExists() {
-        File file = new File(Paths.get(databaseName, BLOCK_DB_NAME).toString());
+        File file = new File(Paths.get(databaseName, BLOCK_DB_NAME()).toString());
 
         return file.exists();
     }
@@ -237,18 +236,18 @@ public class Blockchain {
      */
     public void addBlock(List<Transaction> transactions, Net net) {
         // getData lastHash
-        byte[] lastHash = blockDB.getData(LAST_HASH);
+        byte[] lastHash = blockDB.getData(LAST_HASH());
         ByteString parentHash = ByteString.copyFrom(lastHash);
         // getData number
         long number = BlockUtils.getIncreaseNumber(Tron.getPeer().getBlockchain());
         // getData difficulty
-        ByteString difficulty = ByteString.copyFromUtf8(Constant.DIFFICULTY);
+        ByteString difficulty = ByteString.copyFromUtf8(Constant.DIFFICULTY());
         Block block = BlockUtils.newBlock(transactions, parentHash, difficulty,
                 number);
 
         String value = ByteArray.toHexString(block.toByteArray());
 
-        if (Tron.getPeer().getType().equals(Peer.PEER_SERVER)) {
+        if (Tron.getPeer().getType().equals(Peer.PEER_SERVER())) {
             Message message = new Message(value, Type.BLOCK);
             net.broadcast(message);
         }
@@ -256,7 +255,7 @@ public class Blockchain {
 
     public void receiveBlock(Block block, UTXOSet utxoSet) {
 
-        byte[] lastHashKey = LAST_HASH;
+        byte[] lastHashKey = LAST_HASH();
         byte[] lastHash = blockDB.getData(lastHashKey);
 
         if (!ByteArray.toHexString(block.getBlockHeader().getParentHash().toByteArray()).equals(ByteArray.toHexString

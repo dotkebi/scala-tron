@@ -417,8 +417,7 @@ public class ECKey implements Serializable {
      * @return 20-byte address
      */
     public static byte[] computeAddress(byte[] pubBytes) {
-        return Hash.sha3omit12(
-                Arrays.copyOfRange(pubBytes, 1, pubBytes.length));
+        return Hash.sha3omit12(Arrays.copyOfRange(pubBytes, 1, pubBytes.length));
     }
 
     /**

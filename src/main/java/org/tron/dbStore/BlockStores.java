@@ -27,7 +27,7 @@ public class BlockStores {
 
     public BlockStores() {
 
-        blockDbDataSource = new LevelDbDataSourceImpl(BLOCK_DB_NAME);
+        blockDbDataSource = new LevelDbDataSourceImpl(BLOCK_DB_NAME());
         blockDbDataSource.initDB();
     }
 

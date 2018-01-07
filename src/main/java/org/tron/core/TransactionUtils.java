@@ -23,7 +23,6 @@ import org.tron.protos.core.TronTXOutput.TXOutput;
 import org.tron.protos.core.TronTransaction.Transaction;
 import org.tron.utils.ByteArray;
 import org.tron.wallet.Wallet;
-
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -32,6 +31,7 @@ import static org.tron.utils.Utils.getRandom;
 
 public class TransactionUtils {
     private static final Logger logger = LoggerFactory.getLogger("Transaction");
+
     private final static int RESERVE_BALANCE = 10;
 
     public static Transaction newTransaction(Wallet wallet, String to, long amount, UTXOSet utxoSet) {
@@ -40,9 +40,9 @@ public class TransactionUtils {
 
         byte[] pubKeyHash = wallet.getEcKey().getPubKey();
 
-        SpendableOutputs spendableOutputs = utxoSet.findSpendableOutputs(pubKeyHash, amount);
+        SpendableOutputs spendableOutputs = utxoSet.findSpendableOutputs(new PublicKey(pubKeyHash), amount);
 
-        if (spendableOutputs.getAmount() < amount) {
+        if (spendableOutputs.amount() < amount) {
             logger.error("Not enough funds");
             return null;
         }
@@ -60,8 +60,8 @@ public class TransactionUtils {
         }
 
         txOutputs.add(TXOutputUtils.newTXOutput(amount, to));
-        if (spendableOutputs.getAmount() > amount) {
-            txOutputs.add(TXOutputUtils.newTXOutput(spendableOutputs.getAmount() - amount, ByteArray.toHexString
+        if (spendableOutputs.amount() > amount) {
+            txOutputs.add(TXOutputUtils.newTXOutput(spendableOutputs.amount() - amount, ByteArray.toHexString
                     (wallet.getAddress())));
         }
 
@@ -76,7 +76,7 @@ public class TransactionUtils {
 
         Transaction transaction = transactionBuilder.build();
 
-        transaction = utxoSet.getBlockchain().signTransaction(transaction, wallet.getEcKey());
+        transaction = utxoSet.blockchain().signTransaction(transaction, wallet.getEcKey());
 
         return transaction;
     }

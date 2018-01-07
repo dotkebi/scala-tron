@@ -18,8 +18,8 @@ import org.tron.peer.Peer
 import org.tron.utils.ByteArray
 import org.fusesource.jansi.Ansi.ansi
 
+class AccountCommand extends Command {
 
-class AccountCommand() extends Command {
   override def execute(peer: Peer, parameters: Array[String]): Unit = {
     println(ByteArray.toHexString(peer.getMyKey.getAddress))
   }

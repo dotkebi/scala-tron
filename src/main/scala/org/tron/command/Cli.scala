@@ -26,33 +26,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tron.command
-
 import java.util.Scanner
 
+import cats.effect.IO
 import org.tron.peer.Peer
 
 class Cli(peer: Peer) {
 
   def run(): Unit = {
-    readLines(new Scanner(System.in))
+    readLines(new Scanner(System.in)).unsafeRunSync()
   }
 
-  def readLines(scanner: Scanner): Unit = {
-    var cmd = scanner.nextLine
-    cmd = cmd.trim
-    val cmdArray = cmd.split("\\s+")
-    if (cmdArray.nonEmpty && cmdArray(0) != "") {
-      handleCommand(cmdArray)
-    } else {
-      readLines(scanner)
-    }
+  def readLines(scanner: Scanner): IO[Unit] = {
+
+    def readLine = IO { scanner.nextLine.trim.split("\\s+") }
+
+    for {
+      commands <- readLine
+      _ <- if (commands.nonEmpty) handleCommand(commands) else IO.unit
+      _ <- readLines(scanner)
+    } yield ()
   }
 
-  def handleCommand(cmdArray: Array[String]) = {
+  def handleCommand(cmdArray: Array[String]): IO[Unit] = IO {
     val cmdParameters = cmdArray.tail
     cmdArray.head match {
       case "version" =>
         new VersionCommand().execute(peer, cmdParameters)
+
       case "account" =>
         new AccountCommand().execute(peer, cmdParameters)
 
@@ -74,13 +75,10 @@ class Cli(peer: Peer) {
       case "putmessage" =>
         new ConcensusCommand().putClient(cmdParameters)
 
-      case "exit" =>
-      case "quit" =>
-      case "bye" =>
+      case "exit" | "quit" | "bye" =>
         new ExitCommand().execute(peer, cmdParameters)
 
-      case "help" =>
-      case _ =>
+      case "help" | _ =>
         new HelpCommand().execute(peer, cmdParameters)
     }
   }

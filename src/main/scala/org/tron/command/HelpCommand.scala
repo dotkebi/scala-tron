@@ -31,12 +31,13 @@ import org.tron.peer.Peer
 import org.fusesource.jansi.Ansi.ansi
 
 class HelpCommand() extends Command {
+
   override def execute(peer: Peer, parameters: Array[String]): Unit = {
-    if (parameters.length == 0) {
+    if (parameters.isEmpty) {
       usage()
       return
     }
-    parameters(0) match {
+    parameters.head match {
       case "version" =>
         new VersionCommand().usage()
        

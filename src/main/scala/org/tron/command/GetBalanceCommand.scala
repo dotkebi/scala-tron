@@ -15,13 +15,15 @@
 package org.tron.command
 
 import org.fusesource.jansi.Ansi.ansi
+import org.tron.core.PublicKey
 import org.tron.peer.Peer
+
 import scala.collection.JavaConverters._
 
 class GetBalanceCommand() extends Command {
   override def execute(peer: Peer, parameters: Array[String]): Unit = {
     val pubKeyHash = peer.getWallet.getEcKey.getPubKey
-    val utxos = peer.getUTXOSet.findUTXO(pubKeyHash).asScala
+    val utxos = peer.getUTXOSet.findUTXO(PublicKey(pubKeyHash))
     var balance = 0L
     for (txOutput <- utxos) {
       balance += txOutput.getValue
